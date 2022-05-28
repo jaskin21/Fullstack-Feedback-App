@@ -1,3 +1,20 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@layer components {
+  input[type='radio'] {
+    display: none;
+  }
+  label {
+    margin: 1px;
+    background: gray;
+    font-size: 20px;
+    display: flex;
+    text-align: center;
+    padding: 4px;
+  }
+
+  input[name='rating']:checked + label {
+    background-color: rgb(34 197 94);
+  }
+}

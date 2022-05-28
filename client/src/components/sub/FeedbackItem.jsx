@@ -6,7 +6,7 @@ const FeedbackItem = ({ item }) => {
   };
 
   return (
-    <div className='relative flex justify-between items-center mt-10 bg-white pt-10 pb-6 p-6 rounded-md text-black shadow-lg'>
+    <div className='relative flex justify-between items-center mt-10 bg-white pt-10 pb-6 p-6 rounded-md text-black shadow-lg shadow-2xl'>
       <p className='break-words w-3/4 '>{item.text}</p>
       <div className=' fex flex-row'>
         <button
@@ -17,7 +17,7 @@ const FeedbackItem = ({ item }) => {
         </button>
       </div>
       {/* Evaluation Rating */}
-      <span className='absolute bg-green-500 w-12 h-12 flex items-center justify-center font-bold text-green-50 rounded-full -top-6 -left-6'>
+      <span className=' shadow-2xl absolute bg-green-500 w-12 h-12 flex items-center justify-center font-bold text-green-50 rounded-full -top-6 -left-6'>
         {item.rating}
       </span>
       {/* Evaluation Delete */}
