@@ -9,7 +9,7 @@ import logger from 'morgan';
 import connectDb from './connect-db.js';
 
 import usersRouter from './routes/users.js';
-import todoRouter from './routes/todo.js';
+import feedbackRouter from './routes/feedback.js';
 
 //db connection code
 connectDb(process.env.DB_CONNECTION, process.env.DB_NAME);
@@ -24,7 +24,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/users', usersRouter);
-app.use('/', todoRouter);
+app.use('/', feedbackRouter);
 
 app.use(function (req, res, next) {
   res

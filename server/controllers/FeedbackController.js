@@ -1,9 +1,10 @@
-import TodoModel from '../models/TodoModel.js';
+import Feedback from '../models/FeedbackModel.js';
 
-export const getTodo = async (req, res) => {
+// Fetch all feedback
+export const getFeedback = async (req, res) => {
   try {
-    const todo = await TodoModel.find();
-    res.status(200).json(todo);
+    const item = await Feedback.find();
+    res.status(200).json(item);
   } catch (error) {
     res.status(400).json({
       message: error?.message ?? 'Something went wrong, please try again',
@@ -11,12 +12,14 @@ export const getTodo = async (req, res) => {
   }
 };
 
-export const createTodo = async (req, res) => {
-  const saveTodo = new TodoModel({
+// Create feedback
+export const createFeedback = async (req, res) => {
+  const Item = new Feedback({
     text: req.body.text,
+    rating: req.body.rating,
   });
   try {
-    const saveItem = await saveTodo.save();
+    const saveItem = await Item.save();
     res.status(200).json(saveItem);
   } catch (error) {
     res.status(400).json({
@@ -25,9 +28,10 @@ export const createTodo = async (req, res) => {
   }
 };
 
-export const deleteTodo = async (req, res) => {
+// Delete Feedback
+export const deleteFeedback = async (req, res) => {
   try {
-    const deleteItem = await TodoModel.findByIdAndDelete(req.body);
+    const deleteItem = await Feedback.findByIdAndDelete(req.body);
     res.status(200).json(deleteItem);
   } catch (error) {
     res.status(400).json({
@@ -37,13 +41,13 @@ export const deleteTodo = async (req, res) => {
 };
 
 // updated the task
-export const updateTodo = async (req, res) => {
+export const UpdateFeedback = async (req, res) => {
   try {
-    const updatedTask = await TodoModel.findOneAndUpdate(
+    const updateItem = await Feedback.findOneAndUpdate(
       { _id: req.body.id },
-      { $set: { text: req.body.text } }
+      { $set: { text: req.body.text, rating: req.body.rating } }
     );
-    res.status(200).json(updatedTask);
+    res.status(200).json(updateItem);
   } catch (error) {
     res.status(400).json({
       message: error?.message ?? 'Something went wrong, please try again',
