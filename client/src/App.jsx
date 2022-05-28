@@ -32,9 +32,9 @@ const App = () => {
 
   const updateTask = async () => {
     try {
-      const { data } = await axios.post('http://localhost:5000/update-todo', {
+      const { data } = await axios.patch('http://localhost:5000/update-todo', {
         id: isUpdating,
-        data: { text },
+        text,
       });
       console.log(data);
       setText('');
