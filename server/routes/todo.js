@@ -12,7 +12,7 @@ import {
 // Get all the item from Items
 router.get('/get-todo', getTodo);
 router.post('/save-todo', createTodo);
-router.post('/delete-todo', deleteTodo);
-router.put('/update-todo', updateTodo);
+router.delete('/delete-todo', deleteTodo);
+router.patch('/update-todo', updateTodo);
 
 export default router;

@@ -39,11 +39,11 @@ export const deleteTodo = async (req, res) => {
 // updated the task
 export const updateTodo = async (req, res) => {
   try {
-    const updatedtask = await TodoModel.updateOne(
+    const updatedTask = await TodoModel.findOneAndUpdate(
       { _id: req.body.id },
       { $set: { text: req.body.text } }
     );
-    res.status(200).json(updatedtask);
+    res.status(200).json(updatedTask);
   } catch (error) {
     res.status(400).json({
       message: error?.message ?? 'Something went wrong, please try again',
