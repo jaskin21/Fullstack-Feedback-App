@@ -1,12 +1,22 @@
 import React, { useState } from 'react';
+import RatingSelect from './RatingSelect';
 
 const FeedbackForm = ({ feedback }) => {
   const [text, setText] = useState('');
   const [btnDisabled, setBtnDisabled] = useState(true);
   const [message, setMessage] = useState('');
 
+  // bug
   // realtime input change
   const handleTextChange = (e) => {
+    setMessage(null);
+    if (text === '' || text.trim().length <= 1) {
+      setBtnDisabled(true);
+      setMessage('Text must be at least 3 characters.');
+    } else {
+      setMessage(null);
+      setBtnDisabled(false);
+    }
     setText(e.target.value);
   };
 
@@ -21,7 +31,12 @@ const FeedbackForm = ({ feedback }) => {
       <h3 className='text-xl mt-2 text-center font-semibold text-gray-600 break-normal'>
         How would you rate our service? We'd like to hear from you.
       </h3>
-      <div className='mt-6 flex space-x-4 m-10 justify-center'>
+      <RatingSelect />
+      <div
+        className={`mt-6 ml-6 mr-6 flex space-x-4 justify-center ${
+          !message && 'mb-10'
+        }`}
+      >
         <input
           placeholder='Write a review'
           className='border-slate-600 bg-gray-100 rounded-md py-2 px-4 border-2 outline-none w-full'
@@ -30,13 +45,16 @@ const FeedbackForm = ({ feedback }) => {
         />
         <button
           className={` ${
-            btnDisabled ? 'opacity-50' : ''
+            btnDisabled && 'opacity-50'
           } bg-yellow-400 px-4 rounded-md font-semibold focus:outline-none`}
           disabled={btnDisabled}
         >
           Add
         </button>
       </div>
+      {message && (
+        <h1 className=' mb-10 text-red-600  ml-10 mr-6'>{message}</h1>
+      )}
       {/* Feedback Statatistic */}
       <h1 className=' absolute bottom-0 left-0  font-bold  text-black rounded-md px-4 py-2 m-2  '>
         {feedback.length} Reviews

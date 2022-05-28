@@ -22,8 +22,8 @@ const App = () => {
   return (
     <div className='flex flex-col items-center bg-slate-300 min-h-screen '>
       <Header />
-      <div className='flex flex-col w-full  m pt-4 pb-24 pl-4 pr-4 items-center  justify-center max-w-2xl'>
-        <div className='w-full'>
+      <div className='flex flex-col w-full pt-4 pb-24 pl-4 pr-4 items-center  justify-center max-w-xl'>
+        <div className='w-full ml-4  '>
           <FeedbackForm feedback={feedback} />
           <FeedbackList feedback={feedback} />
         </div>
