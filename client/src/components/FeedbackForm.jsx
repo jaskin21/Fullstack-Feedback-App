@@ -1,16 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import RatingSelect from './RatingSelect';
 
-const FeedbackForm = ({ feedback }) => {
-  const [text, setText] = useState('');
+import FeedbackContext from '../context/FeedbackContext';
+
+const FeedbackForm = () => {
+  const { feedback, addOrUpdateFeedback, setText, text, rating } =
+    useContext(FeedbackContext);
+
   const [btnDisabled, setBtnDisabled] = useState(true);
   const [message, setMessage] = useState('');
 
   // bug
-  // realtime input change
+  // realtime input validation
   const handleTextChange = (e) => {
     setMessage(null);
-    if (text === '' || text.trim().length <= 1) {
+    if (text === '' || rating === null || text.trim().length <= 1) {
       setBtnDisabled(true);
       setMessage('Text must be at least 3 characters.');
     } else {
@@ -48,6 +52,7 @@ const FeedbackForm = ({ feedback }) => {
             btnDisabled && 'opacity-50'
           } bg-yellow-400 px-4 rounded-md font-semibold focus:outline-none`}
           disabled={btnDisabled}
+          onClick={addOrUpdateFeedback}
         >
           Add
         </button>

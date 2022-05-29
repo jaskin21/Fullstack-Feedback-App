@@ -3,7 +3,7 @@ import FeedbackRating from './sub/FeedbackRating';
 
 const RatingSelect = () => {
   return (
-    <ul className='flex flex-wrap justify-center mt-10 ml-7 mr-7 space-x-3'>
+    <ul className='flex flex-wrap justify-center mt-10 ml-6 mr-6 space-x-3'>
       <FeedbackRating number={1} />
       <FeedbackRating number={2} />
       <FeedbackRating number={3} />

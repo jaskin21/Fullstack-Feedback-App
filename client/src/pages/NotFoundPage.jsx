@@ -22,7 +22,7 @@ const NotFoundPage = () => {
 
               <Link
                 to={'/'}
-                class='px-6 py-2 text-sm font-semibold text-blue-800 bg-blue-100'
+                className='px-6 py-2 text-sm font-semibold text-blue-800 bg-blue-100'
               >
                 Go home
               </Link>

@@ -9,6 +9,10 @@ const FeedbackSchema = mongoose.Schema({
     type: Number,
     require: true,
   },
+  date: {
+    type: Date,
+    default: Date.now,
+  },
 });
 
 export default mongoose.model('Feedback', FeedbackSchema);

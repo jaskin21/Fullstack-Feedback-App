@@ -8,11 +8,13 @@ import AboutPage from './pages/AboutPage';
 import NotFoundPage from './pages/NotFoundPage';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <BrowserRouter>
-    <Routes>
-      <Route exact path='/' element={<App />} />
-      <Route path='/about' element={<AboutPage />} />
-      <Route path='*' element={<NotFoundPage />} />
-    </Routes>
-  </BrowserRouter>
+  <React.StrictMode>
+    <BrowserRouter>
+      <Routes>
+        <Route exact path='/' element={<App />} />
+        <Route path='/about' element={<AboutPage />} />
+        <Route path='*' element={<NotFoundPage />} />
+      </Routes>
+    </BrowserRouter>
+  </React.StrictMode>
 );
