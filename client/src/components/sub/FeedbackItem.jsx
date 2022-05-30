@@ -1,8 +1,9 @@
 import { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import FeedbackContext from '../../context/FeedbackContext';
 
-const FeedbackItem = ({ item }) => {
-  const { deleteFeedback, editFeedback } = useContext(FeedbackContext);
+const FeedbackItem = ({ item, update }) => {
+  const { deleteFeedback } = useContext(FeedbackContext);
 
   return (
     <div className='relative flex justify-between items-center mt-10 bg-white pt-10 pb-6 p-6 rounded-md text-black shadow-lg shadow-2xl'>
@@ -10,12 +11,10 @@ const FeedbackItem = ({ item }) => {
       <div className=' fex flex-row'>
         <button
           type='button'
-          className='border border-indigo-500 bg-indigo-500 text-black rounded-md px-4 py-2 m-1 transition duration-500 ease select-none hover:bg-indigo-600 focus:outline-none focus:shadow-outline'
-          onClick={() => {
-            editFeedback(item);
-          }}
+          className='border border-indigo-500 bg-indigo-500 text-black rounded-md px-4 py-2 m-1 transition duration-500 ease select-none hover:bg-indigo-800 focus:outline-none focus:shadow-outline'
+          onClick={update}
         >
-          Edit
+          <a href='#feedbackForm'>Edit</a>
         </button>
       </div>
       {/* Evaluation Rating */}

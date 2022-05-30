@@ -10,7 +10,10 @@ const App = () => {
     <div className='flex flex-col items-center bg-slate-300 min-h-screen '>
       <FeedbackProvider>
         <Header />
-        <div className='flex flex-col w-full pt-4 pb-24 pl-4 pr-4 items-center  justify-center max-w-lg '>
+        <div
+          id='feedbackForm'
+          className='flex flex-col w-full pt-4 pb-24 pl-4 pr-4 items-center  justify-center max-w-lg '
+        >
           <div className='w-full  '>
             <FeedbackForm />
             <FeedbackList />

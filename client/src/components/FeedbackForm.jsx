@@ -1,14 +1,20 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import RatingSelect from './RatingSelect';
 
 import FeedbackContext from '../context/FeedbackContext';
 
 const FeedbackForm = () => {
-  const { feedback, addOrUpdateFeedback, setText, text, rating } =
-    useContext(FeedbackContext);
-
-  const [btnDisabled, setBtnDisabled] = useState(true);
-  const [message, setMessage] = useState('');
+  const {
+    feedback,
+    addOrUpdateFeedback,
+    setText,
+    text,
+    rating,
+    btnDisabled,
+    setBtnDisabled,
+    message,
+    setMessage,
+  } = useContext(FeedbackContext);
 
   // bug
   // realtime input validation
@@ -31,8 +37,8 @@ const FeedbackForm = () => {
     }, 0) / feedback.length;
 
   return (
-    <form className='relative flex flex-col bg-white rounded-md py-4 px-2 justify-center shadow-lg pb-15 shadow-2xl'>
-      <h3 className='text-xl mt-2 text-center font-semibold text-gray-600 break-normal'>
+    <form className='p-10 relative flex flex-col bg-white rounded-md py-4 px-2 justify-center shadow-lg pb-15 shadow-2xl'>
+      <h3 className=' pl-10 pr-10 text-xl mt-2 text-center font-semibold text-gray-600 break-normal'>
         How would you rate our service? We'd like to hear from you.
       </h3>
       <RatingSelect />

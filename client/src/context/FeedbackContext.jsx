@@ -6,12 +6,20 @@ const FeedbackContext = createContext();
 export const FeedbackProvider = ({ children }) => {
   // state of all feedback that has been fetch
   const [feedback, setFeedback] = useState([]);
-  const [editMode, setEditMode] = useState(false);
+  // state for status of edit mode
+  const [editMode, setEditMode] = useState('');
+  // state for disabling and enabling button
+  const [btnDisabled, setBtnDisabled] = useState(true);
+  //state for input validation
+  const [message, setMessage] = useState('');
 
   // Set feedback text
   const [text, setText] = useState('');
   //Set feedback rating
   const [rating, setRating] = useState(10);
+
+  // api link
+  const api = 'http://localhost:5000';
 
   // useEffect for fetching all data from mongoose
   useEffect(() => {
@@ -21,7 +29,7 @@ export const FeedbackProvider = ({ children }) => {
   // Fetch All Feedback
   const fetchFeedback = async () => {
     try {
-      const { data } = await axios.get('http://localhost:5000/get-feedback');
+      const { data } = await axios.get(api + '/get-feedback');
       setFeedback(data);
     } catch (error) {
       console.log(error);
@@ -31,7 +39,7 @@ export const FeedbackProvider = ({ children }) => {
   // Add Feedback
   const addFeedback = async (e) => {
     try {
-      const { data } = await axios.post('http://localhost:5000/save-feedback', {
+      const { data } = await axios.post(api + '/save-feedback', {
         text,
         rating,
       });
@@ -47,12 +55,9 @@ export const FeedbackProvider = ({ children }) => {
   const deleteFeedback = async (_id) => {
     try {
       if (window.confirm('Are you sure your want to delete?')) {
-        const { data } = await axios.delete(
-          'http://localhost:5000/delete-feedback',
-          {
-            data: { _id },
-          }
-        );
+        const { data } = await axios.delete(api + '/delete-feedback', {
+          data: { _id },
+        });
         console.log(data);
         window.location.reload(false);
       }
@@ -63,17 +68,34 @@ export const FeedbackProvider = ({ children }) => {
 
   // conditional funtion for adding or updating feedback
   const addOrUpdateFeedback = () => {
-    if (editMode) {
-      setEditMode(false);
+    if (editMode !== '') {
+      UpdateFeedback();
     }
-    if (!editMode) {
+    if (editMode === '') {
       addFeedback();
     }
   };
 
+  const UpdateFeedback = async () => {
+    try {
+      const { data } = await axios.patch(api + '/update-feedback', {
+        id: editMode,
+        text,
+        rating,
+      });
+      console.log(data);
+      setText('');
+      setEditMode('');
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   //Set item to be Updated
-  const editFeedback = () => {
-    setFeedback({ item, edit: true });
+  const editFeedback = (_id, text, rating) => {
+    setEditMode(_id);
+    setText(text);
+    setRating(rating);
   };
 
   return (
@@ -87,6 +109,10 @@ export const FeedbackProvider = ({ children }) => {
         setRating,
         text,
         rating,
+        btnDisabled,
+        setBtnDisabled,
+        message,
+        setMessage,
       }}
     >
       {children}

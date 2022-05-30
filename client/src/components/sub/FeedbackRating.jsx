@@ -22,7 +22,7 @@ const FeedbackRating = ({ number }) => {
         checked={rating === number}
       />
       <label
-        className='m-0.2 justify-center w-10 h-10 bg-gray-200 text-gray-600 hover:bg-green-500 transition duration-150 rounded-full font-bold hover:text-green-50 cursor-pointer checked:bg-blue-600'
+        className='m-0.2 justify-center w-10 h-10 bg-gray-200 text-gray-600 hover:bg-green-500 transition duration-150 rounded-full font-bold hover:text-green-50 cursor-pointer '
         htmlFor={`num${number}`}
       >
         {number}

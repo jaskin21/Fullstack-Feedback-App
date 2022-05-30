@@ -5,11 +5,17 @@ import FeedbackItem from './sub/FeedbackItem';
 import FeedbackContext from '../context/FeedbackContext';
 
 const FeedbackList = () => {
-  const { feedback } = useContext(FeedbackContext);
+  const { feedback, editFeedback, setBtnDisabled } =
+    useContext(FeedbackContext);
 
   if (!feedback || feedback.length === 0) {
-    return <div>No Feed Back Yet</div>;
+    return (
+      <div className=' p-10 font-bold text-center text-xl'>
+        No Feed Back Yet
+      </div>
+    );
   }
+
   return (
     <div>
       <AnimatePresence>
@@ -20,7 +26,14 @@ const FeedbackList = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
-            <FeedbackItem key={item._id} item={item} />
+            <FeedbackItem
+              key={item._id}
+              item={item}
+              update={() => {
+                editFeedback(item._id, item.text, item.rating);
+                setBtnDisabled(false);
+              }}
+            />
           </motion.div>
         ))}
       </AnimatePresence>
