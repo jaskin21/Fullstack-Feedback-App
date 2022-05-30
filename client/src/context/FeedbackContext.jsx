@@ -43,9 +43,8 @@ export const FeedbackProvider = ({ children }) => {
         text,
         rating,
       });
-      alert(data);
       setText('');
-      setRating(null);
+      setRating(10);
     } catch (error) {
       console.log(error);
     }

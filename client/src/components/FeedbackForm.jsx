@@ -1,6 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
 import RatingSelect from './RatingSelect';
-
 import FeedbackContext from '../context/FeedbackContext';
 
 const FeedbackForm = () => {
@@ -58,7 +57,9 @@ const FeedbackForm = () => {
             btnDisabled && 'opacity-50'
           } bg-yellow-400 px-4 rounded-md font-semibold focus:outline-none`}
           disabled={btnDisabled}
-          onClick={addOrUpdateFeedback}
+          onClick={() => {
+            addOrUpdateFeedback();
+          }}
         >
           Add
         </button>

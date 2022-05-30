@@ -7,13 +7,13 @@ import { FeedbackProvider } from '../context/FeedbackContext';
 
 const App = () => {
   return (
-    <div className='flex flex-col items-center bg-slate-300 min-h-screen '>
+    <div
+      id='feedbackForm'
+      className='flex flex-col items-center bg-slate-300 min-h-screen '
+    >
       <FeedbackProvider>
         <Header />
-        <div
-          id='feedbackForm'
-          className='flex flex-col w-full pt-4 pb-24 pl-4 pr-4 items-center  justify-center max-w-lg '
-        >
+        <div className='flex flex-col w-full pt-4 pb-24 pl-4 pr-4 items-center  justify-center max-w-lg '>
           <div className='w-full  '>
             <FeedbackForm />
             <FeedbackList />
