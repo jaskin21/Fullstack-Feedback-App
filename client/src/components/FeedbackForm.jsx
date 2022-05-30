@@ -2,6 +2,9 @@ import React, { useState, useContext, useEffect } from 'react';
 import RatingSelect from './RatingSelect';
 import FeedbackContext from '../context/FeedbackContext';
 
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const FeedbackForm = () => {
   const {
     feedback,
@@ -63,6 +66,7 @@ const FeedbackForm = () => {
         >
           Add
         </button>
+        <ToastContainer />
       </div>
       {message && (
         <h1 className=' mb-10 text-red-600  ml-10 mr-6'>{message}</h1>

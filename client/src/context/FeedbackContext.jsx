@@ -1,5 +1,6 @@
 import { createContext, useState, useEffect } from 'react';
 import axios from 'axios';
+import { toast, Zoom } from 'react-toastify';
 
 const FeedbackContext = createContext();
 
@@ -17,6 +18,13 @@ export const FeedbackProvider = ({ children }) => {
   const [text, setText] = useState('');
   //Set feedback rating
   const [rating, setRating] = useState(10);
+
+  const notify = () =>
+    toast.success('Thanks for the Feedback!', {
+      transition: Zoom,
+      autoClose: 8000,
+      draggable: false,
+    });
 
   // api link
   const api = 'http://localhost:5000';
@@ -82,7 +90,7 @@ export const FeedbackProvider = ({ children }) => {
         text,
         rating,
       });
-      console.log(data);
+      notify();
       setText('');
       setEditMode('');
     } catch (error) {

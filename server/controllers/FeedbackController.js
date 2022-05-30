@@ -3,7 +3,7 @@ import Feedback from '../models/FeedbackModel.js';
 // Fetch all feedback
 export const getFeedback = async (req, res) => {
   try {
-    const item = await Feedback.find();
+    const item = await Feedback.find().sort({ date: -1 });
     res.status(200).json(item);
   } catch (error) {
     res.status(400).json({
