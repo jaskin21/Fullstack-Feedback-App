@@ -6,7 +6,7 @@ const FeedbackItem = ({ item, update }) => {
   const { deleteFeedback } = useContext(FeedbackContext);
 
   return (
-    <div className='relative flex justify-between items-center mt-10 bg-white pt-10 pb-6 p-6 rounded-md text-black shadow-lg shadow-2xl'>
+    <div className='relative flex justify-between items-center mt-5 bg-white pt-10 pb-6 p-6 rounded-md text-black shadow-lg shadow-2xl'>
       <p className='break-words w-3/4 '>{item.text}</p>
       <div className=' fex flex-row'>
         <button
