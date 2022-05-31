@@ -8,6 +8,7 @@ const FeedbackSchema = mongoose.Schema({
   rating: {
     type: Number,
     require: true,
+    default: 10,
   },
   date: {
     type: Date,
